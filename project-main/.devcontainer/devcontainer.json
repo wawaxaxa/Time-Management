@@ -1,0 +1,12 @@
+{
+  "name": "Java & Spring Boot",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    // This is the key part: set the Java version to 17
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17"
+    }
+  },
+  // Other settings like forwardPorts or extensions...
+  "forwardPorts": [8080]
+}
