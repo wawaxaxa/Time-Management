@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calendar</title>
+    
+    <style>
+        /* --- Page Styles --- */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box; 
+        }
+
+        /* --- Main Container --- */
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 900px; /* Wide container for the calendar */
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        /* --- Calendar Styles --- */
+        .calendar-container {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Header (Month/Year) */
+        .calendar-header {
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* Centered the header */
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        /* Grid for all days */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border-left: 1px solid #eee;
+            border-top: 1px solid #eee;
+        }
+
+        /* Header cells for "Sun", "Mon", etc. */
+        .calendar-day-name {
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            color: #555;
+            background-color: #f0f2f5;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Individual day cell */
+        .calendar-day {
+            min-height: 80px;
+            padding: 8px;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #444;
+            text-align: left; /* Aligned day number to top-left */
+        }
+
+        .calendar-day-number {
+            font-weight: bold;
+        }
+
+        /* Gray out days from other months */
+        .other-month {
+            color: #ccc;
+            background-color: #fafafa;
+        }
+
+        /* Highlight the current day */
+        .today {
+            background-color: #e6f7ff;
+            border: 2px solid #007bff; /* Made highlight stronger */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- This is the main calendar component -->
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <!-- Month and year will be inserted here by JavaScript -->
+                <h2 id="month-year"></h2>
+            </div>
+            <div class="calendar-grid" id="calendar-days">
+                <!-- Day names and numbers will be inserted here by JavaScript -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Run the script once the page is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- 1. Get references to the HTML elements ---
+            const calendarDays = document.getElementById('calendar-days');
+            const monthYearEl = document.getElementById('month-year');
+
+            // --- 2. Get today's date info ---
+            const today = new Date();
+            const currentMonth = today.getMonth(); // 0 = Jan, 1 = Feb, etc.
+            const currentYear = today.getFullYear();
+
+            // --- 3. Set the Header (e.g., "November 2025") ---
+            const monthYearString = today.toLocaleString('default', { month: 'long', year: 'numeric' });
+            monthYearEl.textContent = monthYearString;
+            
+            // --- 4. Add Day Names to the grid ("Sun", "Mon", ...) ---
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayNames.forEach(name => {
+                const dayNameCell = document.createElement('div');
+                dayNameCell.className = 'calendar-day-name';
+                dayNameCell.textContent = name;
+                calendarDays.appendChild(dayNameCell);
+            });
+
+            // --- 5. Figure out the grid layout ---
+            
+            // What day of the week does the 1st of this month fall on?
+            // 0 = Sun, 1 = Mon, ...
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+            const startDayOfWeek = firstDayOfMonth.getDay(); 
+
+            // How many days are in this month?
+            // (Getting day 0 of *next* month gives us the last day of *this* month)
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            // --- 6. Create "padding" days ---
+            // Add empty cells for the days before the 1st of the month
+            for (let i = 0; i < startDayOfWeek; i++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'calendar-day other-month'; // Grayed out
+                calendarDays.appendChild(dayCell);
+            }
+
+            // --- 7. Create all the actual day cells for this month ---
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'calendar-day';
+                
+                // Add the number (e.g., "1", "2", "3")
+                dayCell.innerHTML = `<div class="calendar-day-number">${day}</div>`;
+
+                // Check if this day is today
+                if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+                    dayCell.classList.add('today'); // Add the highlight class
+                }
+                
+                // Add the cell to the grid
+                calendarDays.appendChild(dayCell);
+            }
+        });
+    </script>
+
+</body>
+</html>
