@@ -85,132 +85,143 @@ public class HelloController {
                     </head>
                     <body>
 
-                        <div class="login-container">
-
-                            <h2>Login</h2>
-
-                            <form id="loginForm" onsubmit="handleLogin(); return false;">
-                                <div class="input-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" id="username" name="username" required>
+                       <div class="login-container">
+                    
+                            <!-- LOGIN FORM WRAPPER -->
+                            <div id="login-wrapper">
+                                <h2>Login</h2>
+                                <form onsubmit="handleLogin(); return false;">
+                                    <div class="input-group">
+                                        <label for="login-username">Username</label>
+                                        <input type="text" id="login-username" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="login-password">Password</label>
+                                        <input type="password" id="login-password" required>
+                                    </div>
+                                    <button type="submit">Log In</button>
+                                </form>
+                                
+                                <div class="toggle-link" onclick="toggleForms()">
+                                    Don't have an account? Sign Up
                                 </div>
-                                <div class="input-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" id="password" name="password" required>
+                            </div>
+
+                            <!-- SIGNUP FORM WRAPPER (Hidden by default) -->
+                            <div id="signup-wrapper" style="display: none;">
+                                <h2>Sign Up</h2>
+                                <form onsubmit="handleSignup(); return false;">
+                                    <div class="input-group">
+                                        <label for="signup-email">Email</label>
+                                        <input type="email" id="signup-email" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="signup-username">Username</label>
+                                        <input type="text" id="signup-username" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="signup-password">Password</label>
+                                        <input type="password" id="signup-password" required>
+                                    </div>
+                                    <!-- Reusing your blue button style for consistency -->
+                                    <button type="submit">Create Account</button>
+                                </form>
+
+                                <div class="toggle-link" onclick="toggleForms()">
+                                    Back to Login
                                 </div>
-                                <button type="submit">Log In</button>
-                            </form>
+                            </div>
+
                             <div id="message"></div>
 
                         </div>
 
-                        <div class="signup-container">
-                            <h2>Create Account</h2>
+                       <script>
+                    // 1. Initialize Supabase
+                    const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';
+                    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
+                    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-                            <form id="signupForm" onsubmit="handleSignup(); return false;">
-                                <div class="input-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" name="email" required placeholder="user@example.com">
-                                </div>
-                                
-                                <div class="input-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" id="username" name="username" required>
-                                </div>
+                    // 2. Toggle Logic (Switches content inside the same box)
+                    function toggleForms() {
+                        const loginWrap = document.getElementById('login-wrapper');
+                        const signupWrap = document.getElementById('signup-wrapper');
+                        const msg = document.getElementById('message');
 
-                                <div class="input-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" id="password" name="password" required>
-                                </div>
-                                
-                                <div class="input-group">
-                                    <label for="confirmPassword">Confirm Password</label>
-                                    <input type="password" id="confirmPassword" name="confirmPassword" required>
-                                </div>
+                        if (loginWrap.style.display === 'none') {
+                            // Show Login
+                            loginWrap.style.display = 'block';
+                            signupWrap.style.display = 'none';
+                        } else {
+                            // Show Signup
+                            loginWrap.style.display = 'none';
+                            signupWrap.style.display = 'block';
+                        }
+                        // Clear message
+                        msg.textContent = '';
+                        msg.className = '';
+                    }
 
-                                <button type="submit">Sign Up</button>
-                            </form>
+                    // 3. Login Logic
+                    async function handleLogin() {
+                        const user = document.getElementById("login-username").value;
+                        const pass = document.getElementById("login-password").value;
+                        const messageElement = document.getElementById("message");
 
-                            <div id="message"></div>
-                            
-                            <a href="/" class="login-link">Already have an account? Log In</a>
-                        </div>
-                
-                        <script>
-                            // submission handler
-                            function handleLogin() {
-                                //change
+                        // Check Hardcoded Admin
+                        if (user === "admin" && pass === "password123") {
+                            messageElement.textContent = "Welcome, " + user + "!";
+                            messageElement.className = "success";
+                            setTimeout(() => window.location.href = "/dashboard.html", 1000);
+                            return;
+                        }
 
+                        // Check Supabase
+                        messageElement.textContent = "Verifying...";
+                        messageElement.className = "";
+                        
+                        const { data, error } = await supabase.auth.signInWithPassword({
+                            email: user, 
+                            password: pass
+                        });
 
-                                import { createClient } from '@supabase/supabase-js'
+                        if (error) {
+                            messageElement.textContent = "Incorrect username or password.";
+                            messageElement.className = "error";
+                        } else {
+                            messageElement.textContent = "Login Successful!";
+                            messageElement.className = "success";
+                            setTimeout(() => window.location.href = "/dashboard.html", 1000);
+                        }
+                    }
 
-                                const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co'
-                                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g'
-                                const supabase = createClient(supabaseUrl, supabaseKey)
+                    // 4. Signup Logic
+                    async function handleSignup() {
+                        const email = document.getElementById("signup-email").value;
+                        const user = document.getElementById("signup-username").value;
+                        const pass = document.getElementById("signup-password").value;
+                        const messageElement = document.getElementById("message");
 
-                                async function getData() {
-                                    let { data, error } = await supabase
-                                        .from('your_table_name')
-                                        .select('*');
-                                    if (error) {
-                                        console.error('Error fetching data:', error);
-                                    } else {
-                                        console.log('Fetched data:', data);
-                                    }
-                                }
+                        messageElement.textContent = "Creating account...";
+                        messageElement.className = "";
 
-                                async function insertData() {
-                                    const { data, error } = await supabase
-                                        .from('your_table_name')
-                                        .insert([{ column_name: 'value' }]);
+                        const { data, error } = await supabase.auth.signUp({
+                            email: email,
+                            password: pass,
+                            options: { data: { username: user } }
+                        });
 
-                                    if (error) {
-                                        console.error('Error inserting data:', error);
-                                    } else {
-                                        console.log('Data inserted:', data);
-                                    }
-                                }
-
-                                async function signUp(email, password) {
-                                    const { user, error } = await supabase.auth.signUp({
-                                        email: email,
-                                        password: password
-                                    });
-
-                                    if (error) {
-                                        console.error('Sign-up error:', error);
-                                    } else {
-                                        console.log('User signed up:', user);
-                                    }
-                                }
-
-                                const correctUsername = "admin";
-                                const correctPassword = "password123";
-
-                                //important
-                                const enteredUsername = document.getElementById("username").value;
-                                const enteredPassword = document.getElementById("password").value;
-
-                                //access to message div
-                                const messageElement = document.getElementById("message");
-
-                                if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
-                                    //correct 
-                                    messageElement.textContent = "Welcome, " + correctUsername + "!";
-                                    messageElement.className = "success";
-                                    
-                                    //work on redirection later
-                                    //window.location.href = "dashboard.html";
-      
-                                    window.location.href = "/dashboard.html";
-                                } else {
-                                    //wrong
-                                    messageElement.textContent = "Incorrect username or password.";
-                                    messageElement.className = "error";
-                                }
-                            }
-                        </script>
-
+                        if (error) {
+                            messageElement.textContent = error.message;
+                            messageElement.className = "error";
+                        } else {
+                            messageElement.textContent = "Sign up successful! Check your email.";
+                            messageElement.className = "success";
+                        }
+                    }
+                    
+                </script>
+                        
                     </body>
                     </html>
                """;
