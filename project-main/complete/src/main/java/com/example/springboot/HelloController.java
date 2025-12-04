@@ -104,10 +104,86 @@ public class HelloController {
 
                         </div>
 
+                        <div class="signup-container">
+                            <h2>Create Account</h2>
+
+                            <form id="signupForm" onsubmit="handleSignup(); return false;">
+                                <div class="input-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" required placeholder="user@example.com">
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" id="username" name="username" required>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" required>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="confirmPassword">Confirm Password</label>
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                </div>
+
+                                <button type="submit">Sign Up</button>
+                            </form>
+
+                            <div id="message"></div>
+                            
+                            <a href="/" class="login-link">Already have an account? Log In</a>
+                        </div>
+                
                         <script>
                             // submission handler
                             function handleLogin() {
                                 //change
+
+
+                                import { createClient } from '@supabase/supabase-js'
+
+                                const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co'
+                                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g'
+                                const supabase = createClient(supabaseUrl, supabaseKey)
+
+                                async function getData() {
+                                    let { data, error } = await supabase
+                                        .from('your_table_name')
+                                        .select('*');
+                                    if (error) {
+                                        console.error('Error fetching data:', error);
+                                    } else {
+                                        console.log('Fetched data:', data);
+                                    }
+                                }
+
+                                async function insertData() {
+                                    const { data, error } = await supabase
+                                        .from('your_table_name')
+                                        .insert([{ column_name: 'value' }]);
+
+                                    if (error) {
+                                        console.error('Error inserting data:', error);
+                                    } else {
+                                        console.log('Data inserted:', data);
+                                    }
+                                }
+
+                                async function signUp(email, password) {
+                                    const { user, error } = await supabase.auth.signUp({
+                                        email: email,
+                                        password: password
+                                    });
+
+                                    if (error) {
+                                        console.error('Sign-up error:', error);
+                                    } else {
+                                        console.log('User signed up:', user);
+                                    }
+                                }
+
                                 const correctUsername = "admin";
                                 const correctPassword = "password123";
 
