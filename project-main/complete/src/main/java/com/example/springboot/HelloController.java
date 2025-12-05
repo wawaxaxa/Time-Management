@@ -16,7 +16,8 @@ public class HelloController {
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Login Page</title>
-
+                        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+                        
                         <style>
                             body {
                                 font-family: Arial, sans-serif;
@@ -140,7 +141,13 @@ public class HelloController {
                     // 1. Initialize Supabase
                     const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';
                     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
-                    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+                    try {
+                        supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+                    } catch (e) {
+                        console.error("Supabase library not loaded. Check script tag.");
+                        document.getElementById("message").innerText = "System Error: Supabase not loaded.";
+                    }
 
                     // 2. Toggle Logic (Switches content inside the same box)
                     function toggleForms() {
@@ -198,27 +205,40 @@ public class HelloController {
                     // 4. Signup Logic
                     async function handleSignup() {
                         const email = document.getElementById("signup-email").value;
-                        const user = document.getElementById("signup-username").value;
+                        const username = document.getElementById("signup-username").value;
                         const pass = document.getElementById("signup-password").value;
                         const messageElement = document.getElementById("message");
 
                         messageElement.textContent = "Creating account...";
                         messageElement.className = "";
 
+                        // FIX 3: Removed nested function and added metadata
                         const { data, error } = await supabase.auth.signUp({
                             email: email,
                             password: pass,
-                            options: { data: { username: user } }
+                            options: {
+                                data: {
+                                    username: username // Save the username!
+                                }
+                            }
                         });
 
                         if (error) {
-                            messageElement.textContent = error.message;
+                            messageElement.textContent = 'Error: ' + error.message;
                             messageElement.className = "error";
                         } else {
-                            messageElement.textContent = "Sign up successful! Check your email.";
-                            messageElement.className = "success";
+                            // Check if email confirmation is required
+                            if (data.session == null && data.user) {
+                                messageElement.textContent = 'Success! Please check your email to confirm account.';
+                                messageElement.className = "success";
+                            } else {
+                                messageElement.textContent = 'Account created successfully!';
+                                messageElement.className = "success";
+                            }
                         }
-                    }
+                    } 
+
+      
                     
                 </script>
                         
