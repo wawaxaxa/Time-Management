@@ -17,7 +17,7 @@ public class HelloController {
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Login Page</title>
                         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-                        
+
                         <style>
                             body {
                                 font-family: Arial, sans-serif;
@@ -93,7 +93,7 @@ public class HelloController {
                                 <h2>Login</h2>
                                 <form onsubmit="handleLogin(); return false;">
                                     <div class="input-group">
-                                        <label for="login-username">Username</label>
+                                        <label for="login-username">Email</label>
                                         <input type="text" id="login-username" required>
                                     </div>
                                     <div class="input-group">
@@ -114,11 +114,7 @@ public class HelloController {
                                 <form onsubmit="handleSignup(); return false;">
                                     <div class="input-group">
                                         <label for="signup-email">Email</label>
-                                        <input type="email" id="signup-email" required>
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="signup-username">Username</label>
-                                        <input type="text" id="signup-username" required>
+                                        <input type="text" id="signup-email" required>
                                     </div>
                                     <div class="input-group">
                                         <label for="signup-password">Password</label>
@@ -205,7 +201,6 @@ public class HelloController {
                     // 4. Signup Logic
                     async function handleSignup() {
                         const email = document.getElementById("signup-email").value;
-                        const username = document.getElementById("signup-username").value;
                         const pass = document.getElementById("signup-password").value;
                         const messageElement = document.getElementById("message");
 
@@ -218,7 +213,7 @@ public class HelloController {
                             password: pass,
                             options: {
                                 data: {
-                                    username: username // Save the username!
+                                    //username: username // Save the username!
                                 }
                             }
                         });
