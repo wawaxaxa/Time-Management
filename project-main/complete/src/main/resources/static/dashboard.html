@@ -113,6 +113,9 @@
             <div class="calendar-grid" id="calendar-days">
                 <!-- Day names and numbers will be inserted here by JavaScript -->
             </div>
+
+            <div id="selected-date-msg"></div>
+
         </div>
 
     </div>
@@ -175,6 +178,28 @@
                     dayCell.classList.add('today'); // Add the highlight class
                 }
                 
+
+                // --- INTERACTIVITY LOGIC STARTS HERE ---
+                    dayCell.onclick = function() {
+                        // 1. Clear previous selection
+                        const previouslySelected = document.querySelectorAll('.selected');
+                        previouslySelected.forEach(el => el.classList.remove('selected'));
+
+                        // 2. Highlight THIS cell
+                        dayCell.classList.add('selected');
+
+                        // 3. Format the date string
+                        // Note: Month is 0-indexed, so we add 1 for display
+                        const fullDate = `${currentYear}-${currentMonth + 1}-${day}`;
+                        
+                        // 4. Update the message box
+                        msgEl.textContent = "You selected: " + fullDate;
+                        
+                        // 5. (Optional) Log to console
+                        console.log("User picked:", fullDate);
+                    };
+                    // --- INTERACTIVITY LOGIC ENDS HERE ---
+
                 // Add the cell to the grid
                 calendarDays.appendChild(dayCell);
             }
