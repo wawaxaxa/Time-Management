@@ -74,13 +74,35 @@
 
         /* Individual day cell */
         .calendar-day {
-            min-height: 80px;
-            padding: 8px;
+            min-height: 100px;         /* 1. INCREASE HEIGHT: So there is room to type */
+            padding: 0;                /* 2. REMOVE PADDING: So the box fits perfectly */
             border-right: 1px solid #eee;
             border-bottom: 1px solid #eee;
-            font-size: 0.9rem;
             color: #444;
-            text-align: left; /* Aligned day number to top-left */
+            
+            /* 3. ADD FLEXBOX: This stacks the number on top of the text box */
+            display: flex;             
+            flex-direction: column;    
+            background-color: #fff;
+        }
+
+        /* --- ADD THIS NEW CLASS --- */
+        .event-input {
+            flex-grow: 1;              /* 1. FILL SPACE: Takes up all remaining space */
+            width: 100%;
+            border: none;              /* 2. NO BORDER: Looks clean */
+            resize: none;              /* 3. NO RESIZE: User can't drag the corner */
+            padding: 5px 8px;
+            
+            box-sizing: border-box;
+
+            font-family: inherit;
+            outline: none;             /* 4. NO BLUE OUTLINE: When clicking */
+            background: transparent;
+        }
+
+        .event-input:focus {
+            background-color: #fffde7; /* Optional: Highlights yellow when typing */
         }
 
         .calendar-day-number {
@@ -93,12 +115,21 @@
             background-color: #fafafa;
         }
 
+        .selected {
+            border: 2px solid #f6ff00 !important; /* Forces a blue border */
+            background-color: #e1e36f86 !important; /* Light blue background */
+            position: relative;                   /* Ensures border sits on top */
+            z-index: 10;                          /* Brings it to the front */
+        }
+
         /* Highlight the current day */
         .today {
             background-color: #e6f7ff;
             border: 2px solid #007bff; /* Made highlight stronger */
         }
+
     </style>
+
 </head>
 <body>
 
@@ -114,7 +145,7 @@
                 <!-- Day names and numbers will be inserted here by JavaScript -->
             </div>
 
-            <div id="selected-date-msg"></div>
+            <div id="selected-date-msg">Select a date or type in a box...</div>
 
         </div>
 
@@ -127,6 +158,7 @@
             // --- 1. Get references to the HTML elements ---
             const calendarDays = document.getElementById('calendar-days');
             const monthYearEl = document.getElementById('month-year');
+            const msgEl = document.getElementById('selected-date-msg');
 
             // --- 2. Get today's date info ---
             const today = new Date();
@@ -171,7 +203,18 @@
                 dayCell.className = 'calendar-day';
                 
                 // Add the number (e.g., "1", "2", "3")
-                dayCell.innerHTML = `<div class="calendar-day-number">${day}</div>`;
+     
+                // 1. Create the Day Number
+                const dayNum = document.createElement('div');
+                dayNum.className = 'calendar-day-number';
+                dayNum.textContent = day;
+                dayCell.appendChild(dayNum);
+
+                // 2. Create the Text Area (The Input)
+                const textArea = document.createElement('textarea');
+                textArea.className = 'event-input'; // Matches the CSS class we added
+                textArea.placeholder = "Add event...";
+                dayCell.appendChild(textArea);
 
                 // Check if this day is today
                 if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
@@ -179,26 +222,20 @@
                 }
                 
 
-                // --- INTERACTIVITY LOGIC STARTS HERE ---
-                    dayCell.onclick = function() {
-                        // 1. Clear previous selection
-                        const previouslySelected = document.querySelectorAll('.selected');
-                        previouslySelected.forEach(el => el.classList.remove('selected'));
+                // Click event to show date
+                dayCell.onclick = function(e) {
+                    // 1. Remove 'selected' class from ALL other days
+                    document.querySelectorAll('.calendar-day').forEach(el => {
+                        el.classList.remove('selected');
+                    });
 
-                        // 2. Highlight THIS cell
-                        dayCell.classList.add('selected');
+                    // 2. Add 'selected' class to THIS day
+                    dayCell.classList.add('selected');
 
-                        // 3. Format the date string
-                        // Note: Month is 0-indexed, so we add 1 for display
-                        const fullDate = `${currentYear}-${currentMonth + 1}-${day}`;
-                        
-                        // 4. Update the message box
-                        msgEl.textContent = "You selected: " + fullDate;
-                        
-                        // 5. (Optional) Log to console
-                        console.log("User picked:", fullDate);
-                    };
-                    // --- INTERACTIVITY LOGIC ENDS HERE ---
+                    // 3. Update the text at the bottom
+                    const fullDate = `${currentYear}-${currentMonth + 1}-${day}`;
+                    msgEl.textContent = "You selected: " + fullDate;
+                };
 
                 // Add the cell to the grid
                 calendarDays.appendChild(dayCell);

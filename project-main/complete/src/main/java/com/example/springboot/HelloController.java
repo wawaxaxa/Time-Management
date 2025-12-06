@@ -192,6 +192,8 @@ public class HelloController {
                             messageElement.textContent = "Incorrect username or password.";
                             messageElement.className = "error";
                         } else {
+                            localStorage.setItem('user_email', user);
+
                             messageElement.textContent = "Login Successful!";
                             messageElement.className = "success";
                             setTimeout(() => window.location.href = "/dashboard.html", 1000);
