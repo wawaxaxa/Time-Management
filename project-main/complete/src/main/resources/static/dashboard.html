@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
-        /* --- Page Styles --- */
+        /* Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f2f5;
@@ -21,14 +21,13 @@
             box-sizing: border-box; 
         }
 
-        /* --- Main Container --- */
         .container {
             background-color: white;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 900px; /* Wide container for the calendar */
+            max-width: 900px; /* wide */
             text-align: center;
         }
 
@@ -37,17 +36,17 @@
             color: #333;
         }
 
-        /* --- Calendar Styles --- */
+        /* Calander */
         .calendar-container {
             width: 100%;
             margin-top: 1rem;
         }
 
-        /* Header (Month/Year) */
+        /* header Month/Year */
         .calendar-header {
             padding: 20px;
             display: flex;
-            justify-content: center; /* Centered the header */
+            justify-content: center; /* centered */
             align-items: center;
             background-color: #007bff;
             color: white;
@@ -63,7 +62,7 @@
             border-top: 1px solid #eee;
         }
 
-        /* Header cells for "Sun", "Mon", etc. */
+        /* monday sunday */
         .calendar-day-name {
             font-weight: bold;
             text-align: center;
@@ -74,7 +73,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* Individual day cell */
+        /* day square */
         .calendar-day {
             min-height: 100px;         /* 1. INCREASE HEIGHT: So there is room to type */
             padding: 0;                /* 2. REMOVE PADDING: So the box fits perfectly */
