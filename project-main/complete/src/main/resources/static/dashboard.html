@@ -136,7 +136,7 @@
             </div>
 
             <div class="calendar-grid" id="calendar-days">
-                <!-- javascript D/N -->
+                <!-- javascript Day/Number -->
             </div>
 
             <div id="selected-date-msg">Select a date or type in a box...</div>
@@ -161,7 +161,7 @@
 
             // error
             if (!currentUserEmail) {
-                msgEl.textContent = "Error: No user logged in.";
+                msgEl.textContent = "Error: No user logged in";
                 return;
             }
 
@@ -223,7 +223,7 @@
 
                 // text area added
                 const textArea = document.createElement('textarea');
-                textArea.className = 'event-input'; // Matches the CSS class we added
+                textArea.className = 'event-input';
                 textArea.placeholder = "Add event...";
                 dayCell.appendChild(textArea);
 
@@ -246,9 +246,9 @@
                         });
 
                     if (error) {
-                        msgEl.textContent = "Error saving!";
+                        msgEl.textContent = "Error saving";
                     } else {
-                        msgEl.textContent = "Saved.";
+                        msgEl.textContent = "Saved";
                     }
                 });
 

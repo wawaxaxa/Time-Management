@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
-        /* Styles */
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f2f5;
@@ -27,7 +27,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 900px; /* wide */
+            max-width: 900px; 
             text-align: center;
         }
 
@@ -36,17 +36,15 @@
             color: #333;
         }
 
-        /* Calander */
         .calendar-container {
             width: 100%;
             margin-top: 1rem;
         }
 
-        /* header Month/Year */
         .calendar-header {
             padding: 20px;
             display: flex;
-            justify-content: center; /* centered */
+            justify-content: center; 
             align-items: center;
             background-color: #007bff;
             color: white;
@@ -54,7 +52,6 @@
             border-top-right-radius: 8px;
         }
 
-        /* Grid for all days */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -62,7 +59,6 @@
             border-top: 1px solid #eee;
         }
 
-        /* monday sunday */
         .calendar-day-name {
             font-weight: bold;
             text-align: center;
@@ -73,60 +69,56 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* day square */
         .calendar-day {
-            min-height: 100px;         /* 1. INCREASE HEIGHT: So there is room to type */
-            padding: 0;                /* 2. REMOVE PADDING: So the box fits perfectly */
+            min-height: 100px;         
+            padding: 0;                
             border-right: 1px solid #eee;
             border-bottom: 1px solid #eee;
             color: #444;
             
-            /* 3. ADD FLEXBOX: This stacks the number on top of the text box */
             display: flex;             
             flex-direction: column;    
             background-color: #fff;
         }
 
-        /* --- ADD THIS NEW CLASS --- */
         .event-input {
-            flex-grow: 1;              /* 1. FILL SPACE: Takes up all remaining space */
+            flex-grow: 1;              
             width: 100%;
-            border: none;              /* 2. NO BORDER: Looks clean */
-            resize: none;              /* 3. NO RESIZE: User can't drag the corner */
+            border: none;              
+            resize: none;              
             padding: 5px 8px;
 
-            box-sizing: border-box;
+            box-sizing: border-box; /* IMPORTANT */
 
             font-family: inherit;
-            outline: none;             /* 4. NO BLUE OUTLINE: When clicking */
+            outline: none;             
             background: transparent;
         }
 
         .event-input:focus {
-            background-color: #fffde7; /* Optional: Highlights yellow when typing */
+            background-color: #fffde7;
         }
 
         .calendar-day-number {
             font-weight: bold;
         }
 
-        /* Gray out days from other months */
         .other-month {
             color: #ccc;
             background-color: #fafafa;
         }
 
         .selected {
-            border: 2px solid #f6ff00 !important; /* Forces a blue border */
-            background-color: #e1e36f86 !important; /* Light blue background */
-            position: relative;                   /* Ensures border sits on top */
-            z-index: 10;                          /* Brings it to the front */
+            border: 2px solid #f6ff00 !important; /* forces it */
+            background-color: #e1e36f86 !important; 
+            position: relative;                   
+            z-index: 10;                          
         }
 
-        /* Highlight the current day */
+        /* border highlight day */
         .today {
             background-color: #e6f7ff;
-            border: 2px solid #007bff; /* Made highlight stronger */
+            border: 2px solid #007bff; 
         }
 
     </style>
@@ -136,14 +128,15 @@
 
     <div class="container">
 
-        <!-- This is the main calendar component -->
         <div class="calendar-container">
+
             <div class="calendar-header">
-                <!-- Month and year will be inserted here by JavaScript -->
+                <!-- javascript M/Y -->
                 <h2 id="month-year"></h2>
             </div>
+
             <div class="calendar-grid" id="calendar-days">
-                <!-- Day names and numbers will be inserted here by JavaScript -->
+                <!-- javascript D/N -->
             </div>
 
             <div id="selected-date-msg">Select a date or type in a box...</div>
@@ -153,36 +146,35 @@
     </div>
 
     <script>
-        const SUPABASE_URL = 'https://obqqtvzkiwaeyasskayd.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
         
         const currentUserEmail = localStorage.getItem('user_email');
 
-        // Run the script once the page is fully loaded
         document.addEventListener('DOMContentLoaded', async function() {
             
-            // --- 1. Get references to the HTML elements ---
+            // elements
             const calendarDays = document.getElementById('calendar-days');
             const monthYearEl = document.getElementById('month-year');
             const msgEl = document.getElementById('selected-date-msg');
 
-            // Safety check: Don't load if we don't know who the user is
+            // error
             if (!currentUserEmail) {
                 msgEl.textContent = "Error: No user logged in.";
                 return;
             }
 
-            // --- 2. Get today's date info ---
+            // tdy info
             const today = new Date();
-            const currentMonth = today.getMonth(); // 0 = Jan, 1 = Feb, etc.
+            const currentMonth = today.getMonth(); 
             const currentYear = today.getFullYear();
 
-            // --- 3. Set the Header (e.g., "November 2025") ---
+            // set header
             const monthYearString = today.toLocaleString('default', { month: 'long', year: 'numeric' });
             monthYearEl.textContent = monthYearString;
             
-            // --- 4. Add Day Names to the grid ("Sun", "Mon", ...) ---
+            // add days of week
             const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             dayNames.forEach(name => {
                 const dayNameCell = document.createElement('div');
@@ -191,22 +183,17 @@
                 calendarDays.appendChild(dayNameCell);
             });
 
-            // --- 5. Figure out the grid layout ---
-            
-            // What day of the week does the 1st of this month fall on?
-            // 0 = Sun, 1 = Mon, ...
+            // first day of month
             const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
             const startDayOfWeek = firstDayOfMonth.getDay(); 
 
-            // How many days are in this month?
-            // (Getting day 0 of *next* month gives us the last day of *this* month)
+            // days in month
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-            // --- 6. Create "padding" days ---
-            // Add empty cells for the days before the 1st of the month
+            // EMPTY CELLS
             for (let i = 0; i < startDayOfWeek; i++) {
                 const dayCell = document.createElement('div');
-                dayCell.className = 'calendar-day other-month'; // Grayed out
+                dayCell.className = 'calendar-day other-month'; // GRAY
                 calendarDays.appendChild(dayCell);
             }
 
@@ -215,53 +202,50 @@
             const { data: savedEvents, error } = await supabase
                 .from('calendar_events')
                 .select('*')
-                .eq('user_email', currentUserEmail); // <--- CRITICAL FILTER
+                .eq('user_email', currentUserEmail); // important
 
             if (error) console.error("Error loading:", error);
             else msgEl.textContent = `Loaded data for ${currentUserEmail}`;
         
 
-            // --- 7. Create all the actual day cells for this month ---
+            // create day cells/grids
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayCell = document.createElement('div');
                 dayCell.className = 'calendar-day';
                 
                 const storageKey = `event-${currentYear}-${currentMonth}-${day}`;
-                // Add the number (e.g., "1", "2", "3")
+                // add num
      
-                // 1. Create the Day Number
                 const dayNum = document.createElement('div');
                 dayNum.className = 'calendar-day-number';
                 dayNum.textContent = day;
                 dayCell.appendChild(dayNum);
 
-                // 2. Create the Text Area (The Input)
+                // text area added
                 const textArea = document.createElement('textarea');
                 textArea.className = 'event-input'; // Matches the CSS class we added
                 textArea.placeholder = "Add event...";
                 dayCell.appendChild(textArea);
 
-                // --- LOAD DATA ---
-                // Only load if the row matches the storageKey (The email filter happened in the fetch above)
+                // make sure matches storageKey
                 if (savedEvents) {
                     const foundEvent = savedEvents.find(e => e.date_id === storageKey);
                     if (foundEvent) textArea.value = foundEvent.note;
                 }
 
-                // --- SAVE DATA WITH EMAIL ---
+                // save calander using supabase
                 textArea.addEventListener('change', async function() {
                     msgEl.textContent = "Saving...";
                     
                     const { error } = await supabase
                         .from('calendar_events')
                         .upsert({ 
-                            user_email: currentUserEmail, // <--- CRITICAL ADDITION
+                            user_email: currentUserEmail,
                             date_id: storageKey, 
                             note: textArea.value 
                         });
 
                     if (error) {
-                        console.error('Save error:', error);
                         msgEl.textContent = "Error saving!";
                     } else {
                         msgEl.textContent = "Saved.";
@@ -270,26 +254,26 @@
 
                 // Check if this day is today
                 if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
-                    dayCell.classList.add('today'); // Add the highlight class
+                    dayCell.classList.add('today'); // highlight
                 }
                 
 
-                // Click event to show date
+                // selecting dates
                 dayCell.onclick = function(e) {
-                    // 1. Remove 'selected' class from ALL other days
+                    // 1 selected only
                     document.querySelectorAll('.calendar-day').forEach(el => {
                         el.classList.remove('selected');
                     });
 
-                    // 2. Add 'selected' class to THIS day
+                    // select it
                     dayCell.classList.add('selected');
 
-                    // 3. Update the text at the bottom
+                    // update
                     const fullDate = `${currentYear}-${currentMonth + 1}-${day}`;
                     msgEl.textContent = "You selected: " + fullDate;
                 };
 
-                // Add the cell to the grid
+                // add cell
                 calendarDays.appendChild(dayCell);
             }
         });
