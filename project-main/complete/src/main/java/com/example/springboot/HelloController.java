@@ -88,7 +88,7 @@ public class HelloController {
 
                        <div class="login-container">
                     
-                            <!-- LOGIN FORM WRAPPER -->
+                            <!-- id for login-wrapper -->
                             <div id="login-wrapper">
                                 <h2>Login</h2>
                                 <form onsubmit="handleLogin(); return false;">
@@ -108,7 +108,7 @@ public class HelloController {
                                 </div>
                             </div>
 
-                            <!-- SIGNUP FORM WRAPPER (Hidden by default) -->
+                            <!--sign up id -->
                             <div id="signup-wrapper" style="display: none;">
                                 <h2>Sign Up</h2>
                                 <form onsubmit="handleSignup(); return false;">
@@ -120,7 +120,7 @@ public class HelloController {
                                         <label for="signup-password">Password</label>
                                         <input type="password" id="signup-password" required>
                                     </div>
-                                    <!-- Reusing your blue button style for consistency -->
+                
                                     <button type="submit">Create Account</button>
                                 </form>
 
@@ -134,73 +134,72 @@ public class HelloController {
                         </div>
 
                        <script>
-                    // 1. Initialize Supabase
+                    // supabase url and apikey
                     const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';
                     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
 
                     try {
                         supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
                     } catch (e) {
-                        console.error("Supabase library not loaded. Check script tag.");
-                        document.getElementById("message").innerText = "System Error: Supabase not loaded.";
+                        document.getElementById("message").innerText = "System Error: Supabase not loaded";
                     }
 
-                    // 2. Toggle Logic (Switches content inside the same box)
+                    // switch from login to signup
                     function toggleForms() {
                         const loginWrap = document.getElementById('login-wrapper');
                         const signupWrap = document.getElementById('signup-wrapper');
                         const msg = document.getElementById('message');
 
                         if (loginWrap.style.display === 'none') {
-                            // Show Login
+                            // login
                             loginWrap.style.display = 'block';
                             signupWrap.style.display = 'none';
                         } else {
-                            // Show Signup
+                            // signup
                             loginWrap.style.display = 'none';
                             signupWrap.style.display = 'block';
                         }
-                        // Clear message
+                        // clear
                         msg.textContent = '';
                         msg.className = '';
                     }
 
-                    // 3. Login Logic
+                    // login handler
                     async function handleLogin() {
                         const user = document.getElementById("login-username").value;
                         const pass = document.getElementById("login-password").value;
                         const messageElement = document.getElementById("message");
 
-                        // Check Hardcoded Admin
+                        // not needed (doesnt save)
                         if (user === "admin" && pass === "password123") {
-                            messageElement.textContent = "Welcome, " + user + "!";
+                            messageElement.textContent = "Welcome, " + user;
                             messageElement.className = "success";
                             setTimeout(() => window.location.href = "/dashboard.html", 1000);
                             return;
                         }
 
-                        // Check Supabase
                         messageElement.textContent = "Verifying...";
                         messageElement.className = "";
                         
+                        // check supabase
                         const { data, error } = await supabase.auth.signInWithPassword({
                             email: user, 
                             password: pass
                         });
 
                         if (error) {
-                            messageElement.textContent = "Incorrect username or password.";
+                            messageElement.textContent = "Incorrect username or password";
                             messageElement.className = "error";
                         } else {
                             localStorage.setItem('user_email', user);
 
-                            messageElement.textContent = "Login Successful!";
+                            messageElement.textContent = "Login Successful";
                             messageElement.className = "success";
                             setTimeout(() => window.location.href = "/dashboard.html", 1000);
                         }
                     }
 
-                    // 4. Signup Logic
+                    // signup handler
                     async function handleSignup() {
                         const email = document.getElementById("signup-email").value;
                         const pass = document.getElementById("signup-password").value;
@@ -209,13 +208,13 @@ public class HelloController {
                         messageElement.textContent = "Creating account...";
                         messageElement.className = "";
 
-                        // FIX 3: Removed nested function and added metadata
+                        // save credentials using supabase
                         const { data, error } = await supabase.auth.signUp({
                             email: email,
                             password: pass,
                             options: {
                                 data: {
-                                    //username: username // Save the username!
+                                    //username: username // NOT NEEDED
                                 }
                             }
                         });
@@ -226,10 +225,10 @@ public class HelloController {
                         } else {
                             // Check if email confirmation is required
                             if (data.session == null && data.user) {
-                                messageElement.textContent = 'Success! Please check your email to confirm account.';
+                                messageElement.textContent = 'Success! Please check your email to confirm account';
                                 messageElement.className = "success";
                             } else {
-                                messageElement.textContent = 'Account created successfully!';
+                                messageElement.textContent = 'Account created successfully';
                                 messageElement.className = "success";
                             }
                         }
