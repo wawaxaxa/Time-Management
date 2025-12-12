@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.springboot.HelloControllerTest" time="0.828" tests="1" errors="0" skipped="0" failures="1">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/workspaces/Time-Management/project-main/complete/target/test-classes:/workspaces/Time-Management/project-main/complete/target/classes:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar:/home/vscode/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar:/home/vscode/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar:/home/vscode/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/vscode/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/vscode/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar:/home/vscode/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/vscode/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar:/home/vscode/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar:/home/vscode/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar:/home/vscode/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar:/home/vscode/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-actuator/3.3.0/spring-boot-starter-actuator-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-actuator-autoconfigure/3.3.0/spring-boot-actuator-autoconfigure-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-actuator/3.3.0/spring-boot-actuator-3.3.0.jar:/home/vscode/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar:/home/vscode/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar:/home/vscode/.m2/repository/io/micrometer/micrometer-jakarta9/1.13.0/micrometer-jakarta9-1.13.0.jar:/home/vscode/.m2/repository/io/micrometer/micrometer-core/1.13.0/micrometer-core-1.13.0.jar:/home/vscode/.m2/repository/org/hdrhistogram/HdrHistogram/2.2.1/HdrHistogram-2.2.1.jar:/home/vscode/.m2/repository/org/latencyutils/LatencyUtils/2.0.3/LatencyUtils-2.0.3.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.0/spring-boot-starter-test-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-test/3.3.0/spring-boot-test-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.0/spring-boot-test-autoconfigure-3.3.0.jar:/home/vscode/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/vscode/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar:/home/vscode/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/vscode/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/vscode/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/vscode/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/vscode/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/vscode/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/vscode/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar:/home/vscode/.m2/repository/org/awaitility/awaitility/4.2.1/awaitility-4.2.1.jar:/home/vscode/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/vscode/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/vscode/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/vscode/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/vscode/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/vscode/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/vscode/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/vscode/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/vscode/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/home/vscode/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/vscode/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.16/byte-buddy-agent-1.14.16.jar:/home/vscode/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/vscode/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/vscode/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/home/vscode/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/vscode/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-test/6.1.8/spring-test-6.1.8.jar:/home/vscode/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
+    <property name="java.vm.vendor" value="Microsoft"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="catalina.useNaming" value="false"/>
+    <property name="java.vendor.url" value="https://www.microsoft.com"/>
+    <property name="user.timezone" value="GMT"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/usr/local/sdkman/candidates/java/17.0.17-ms/lib"/>
+    <property name="sun.java.command" value="/workspaces/Time-Management/project-main/complete/target/surefire/surefirebooter-20251212182622008_3.jar /workspaces/Time-Management/project-main/complete/target/surefire 2025-12-12T18-26-21_466-jvmRun1 surefire-20251212182622008_1tmp surefire_0-20251212182622008_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/workspaces/Time-Management/project-main/complete/target/test-classes:/workspaces/Time-Management/project-main/complete/target/classes:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar:/home/vscode/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar:/home/vscode/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar:/home/vscode/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/vscode/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/vscode/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar:/home/vscode/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/vscode/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar:/home/vscode/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar:/home/vscode/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar:/home/vscode/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar:/home/vscode/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar:/home/vscode/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-actuator/3.3.0/spring-boot-starter-actuator-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-actuator-autoconfigure/3.3.0/spring-boot-actuator-autoconfigure-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-actuator/3.3.0/spring-boot-actuator-3.3.0.jar:/home/vscode/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar:/home/vscode/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar:/home/vscode/.m2/repository/io/micrometer/micrometer-jakarta9/1.13.0/micrometer-jakarta9-1.13.0.jar:/home/vscode/.m2/repository/io/micrometer/micrometer-core/1.13.0/micrometer-core-1.13.0.jar:/home/vscode/.m2/repository/org/hdrhistogram/HdrHistogram/2.2.1/HdrHistogram-2.2.1.jar:/home/vscode/.m2/repository/org/latencyutils/LatencyUtils/2.0.3/LatencyUtils-2.0.3.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.0/spring-boot-starter-test-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-test/3.3.0/spring-boot-test-3.3.0.jar:/home/vscode/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.0/spring-boot-test-autoconfigure-3.3.0.jar:/home/vscode/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/vscode/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar:/home/vscode/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/vscode/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/vscode/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/vscode/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/vscode/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/vscode/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/vscode/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar:/home/vscode/.m2/repository/org/awaitility/awaitility/4.2.1/awaitility-4.2.1.jar:/home/vscode/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/vscode/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/vscode/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/vscode/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/vscode/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/vscode/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/vscode/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/vscode/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/vscode/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/home/vscode/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/vscode/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.16/byte-buddy-agent-1.14.16.jar:/home/vscode/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/vscode/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/vscode/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/home/vscode/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/vscode/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar:/home/vscode/.m2/repository/org/springframework/spring-test/6.1.8/spring-test-6.1.8.jar:/home/vscode/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/vscode"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-10-21"/>
+    <property name="java.home" value="/usr/local/sdkman/candidates/java/17.0.17-ms"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/workspaces/Time-Management/project-main/complete"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="/workspaces/Time-Management/project-main/complete/target/surefire/surefirebooter-20251212182622008_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.17+10-LTS"/>
+    <property name="user.name" value="vscode"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.8.0-1030-azure"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Microsoft-12574440"/>
+    <property name="localRepository" value="/home/vscode/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/microsoft/openjdk/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="catalina.home" value="/tmp/tomcat.0.7904375379699776084"/>
+    <property name="java.version" value="17.0.17"/>
+    <property name="user.dir" value="/workspaces/Time-Management/project-main/complete"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="2035"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="catalina.base" value="/tmp/tomcat.0.7904375379699776084"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Microsoft"/>
+    <property name="java.vm.version" value="17.0.17+10-LTS"/>
+    <property name="java.specification.maintenance.version" value="1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="getHello" classname="com.example.springboot.HelloControllerTest" time="0.08">
+    <failure message="Response content&#10;Expected: &quot;Greetings from Spring Boot!&quot;&#10;     but: was &quot; &lt;!DOCTYPE html&gt;\n     &lt;html lang=\&quot;en\&quot;&gt;\n     &lt;head&gt;\n         &lt;meta charset=\&quot;UTF-8\&quot;&gt;\n         &lt;meta name=\&quot;viewport\&quot; content=\&quot;width=device-width, initial-scale=1.0\&quot;&gt;\n         &lt;title&gt;Login Page&lt;/title&gt;\n         &lt;script src=\&quot;https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2\&quot;&gt;&lt;/script&gt;\n\n         &lt;style&gt;\n             body {\n                 font-family: Arial, sans-serif;\n                 background-color: #f0f2f5;\n                 display: flex;\n                 justify-content: center;\n                 align-items: center;\n                 height: 100vh;\n                 margin: 0;\n             }\n\n             .login-container {\n                 background-color: white;\n                 padding: 2rem;\n                 border-radius: 8px;\n                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);\n                 width: 300px;\n                 text-align: center;\n             }\n             h2 {\n                 margin-bottom: 1.5rem;\n                 color: #333;\n             }\n             .input-group {\n                 margin-bottom: 1rem;\n                 text-align: left;\n             }\n             label {\n                 display: block;\n                 margin-bottom: 0.5rem;\n                 color: #555;\n             }\n             input[type=\&quot;text\&quot;], input[type=\&quot;password\&quot;] {\n                 width: 100%;\n                 padding: 0.75rem;\n                 border: 1px solid #ddd;\n                 border-radius: 4px;\n                 box-sizing: border-box;\n             }\n             button {\n                 width: 100%;\n                 padding: 0.75rem;\n                 border: none;\n                 border-radius: 4px;\n                 background-color: #007bff;\n                 color: white;\n                 font-size: 1rem;\n                 cursor: pointer;\n                 transition: background-color 0.2s;\n             }\n             button:hover {\n                 background-color: #0056b3;\n             }\n             #message {\n                 margin-top: 1rem;\n                 font-weight: bold;\n             }\n             .success {\n                 color: green;\n             }\n             .error {\n                 color: red;\n             }\n         &lt;/style&gt;\n\n     &lt;/head&gt;\n     &lt;body&gt;\n\n        &lt;div class=\&quot;login-container\&quot;&gt;\n\n             &lt;!-- id for login-wrapper --&gt;\n             &lt;div id=\&quot;login-wrapper\&quot;&gt;\n                 &lt;h2&gt;Login&lt;/h2&gt;\n                 &lt;form onsubmit=\&quot;handleLogin(); return false;\&quot;&gt;\n                     &lt;div class=\&quot;input-group\&quot;&gt;\n                         &lt;label for=\&quot;login-username\&quot;&gt;Email&lt;/label&gt;\n                         &lt;input type=\&quot;text\&quot; id=\&quot;login-username\&quot; required&gt;\n                     &lt;/div&gt;\n                     &lt;div class=\&quot;input-group\&quot;&gt;\n                         &lt;label for=\&quot;login-password\&quot;&gt;Password&lt;/label&gt;\n                         &lt;input type=\&quot;password\&quot; id=\&quot;login-password\&quot; required&gt;\n                     &lt;/div&gt;\n                     &lt;button type=\&quot;submit\&quot;&gt;Log In&lt;/button&gt;\n                 &lt;/form&gt;\n\n                 &lt;div class=\&quot;toggle-link\&quot; onclick=\&quot;toggleForms()\&quot;&gt;\n                     Don&apos;t have an account? Sign Up\n                 &lt;/div&gt;\n             &lt;/div&gt;\n\n             &lt;!--sign up id --&gt;\n             &lt;div id=\&quot;signup-wrapper\&quot; style=\&quot;display: none;\&quot;&gt;\n                 &lt;h2&gt;Sign Up&lt;/h2&gt;\n                 &lt;form onsubmit=\&quot;handleSignup(); return false;\&quot;&gt;\n                     &lt;div class=\&quot;input-group\&quot;&gt;\n                         &lt;label for=\&quot;signup-email\&quot;&gt;Email&lt;/label&gt;\n                         &lt;input type=\&quot;text\&quot; id=\&quot;signup-email\&quot; required&gt;\n                     &lt;/div&gt;\n                     &lt;div class=\&quot;input-group\&quot;&gt;\n                         &lt;label for=\&quot;signup-password\&quot;&gt;Password&lt;/label&gt;\n                         &lt;input type=\&quot;password\&quot; id=\&quot;signup-password\&quot; required&gt;\n                     &lt;/div&gt;\n\n                     &lt;button type=\&quot;submit\&quot;&gt;Create Account&lt;/button&gt;\n                 &lt;/form&gt;\n\n                 &lt;div class=\&quot;toggle-link\&quot; onclick=\&quot;toggleForms()\&quot;&gt;\n                     Back to Login\n                 &lt;/div&gt;\n             &lt;/div&gt;\n\n             &lt;div id=\&quot;message\&quot;&gt;&lt;/div&gt;\n\n         &lt;/div&gt;\n\n        &lt;script&gt;\n     // supabase url and apikey\n     const supabaseUrl = &apos;https://obqqtvzkiwaeyasskayd.supabase.co&apos;;\n     const supabaseKey = &apos;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g&apos;;\n\n     try {\n         supabase = window.supabase.createClient(supabaseUrl, supabaseKey);\n     } catch (e) {\n         document.getElementById(\&quot;message\&quot;).innerText = \&quot;System Error: Supabase not loaded\&quot;;\n     }\n\n     // switch from login to signup\n     function toggleForms() {\n         const loginWrap = document.getElementById(&apos;login-wrapper&apos;);\n         const signupWrap = document.getElementById(&apos;signup-wrapper&apos;);\n         const msg = document.getElementById(&apos;message&apos;);\n\n         if (loginWrap.style.display === &apos;none&apos;) {\n             // login\n             loginWrap.style.display = &apos;block&apos;;\n             signupWrap.style.display = &apos;none&apos;;\n         } else {\n             // signup\n             loginWrap.style.display = &apos;none&apos;;\n             signupWrap.style.display = &apos;block&apos;;\n         }\n         // clear\n         msg.textContent = &apos;&apos;;\n         msg.className = &apos;&apos;;\n     }\n\n     // login handler\n     async function handleLogin() {\n         const user = document.getElementById(\&quot;login-username\&quot;).value;\n         const pass = document.getElementById(\&quot;login-password\&quot;).value;\n         const messageElement = document.getElementById(\&quot;message\&quot;);\n\n         // not needed (doesnt save)\n         if (user === \&quot;admin\&quot; &amp;&amp; pass === \&quot;password123\&quot;) {\n             messageElement.textContent = \&quot;Welcome, \&quot; + user;\n             messageElement.className = \&quot;success\&quot;;\n             setTimeout(() =&gt; window.location.href = \&quot;/dashboard.html\&quot;, 1000);\n             return;\n         }\n\n         messageElement.textContent = \&quot;Verifying...\&quot;;\n         messageElement.className = \&quot;\&quot;;\n\n         // check supabase\n         const { data, error } = await supabase.auth.signInWithPassword({\n             email: user,\n             password: pass\n         });\n\n         if (error) {\n             messageElement.textContent = \&quot;Incorrect username or password\&quot;;\n             messageElement.className = \&quot;error\&quot;;\n         } else {\n             localStorage.setItem(&apos;user_email&apos;, user);\n\n             messageElement.textContent = \&quot;Login Successful\&quot;;\n             messageElement.className = \&quot;success\&quot;;\n             setTimeout(() =&gt; window.location.href = \&quot;/dashboard.html\&quot;, 1000);\n         }\n     }\n\n     // signup handler\n     async function handleSignup() {\n         const email = document.getElementById(\&quot;signup-email\&quot;).value;\n         const pass = document.getElementById(\&quot;signup-password\&quot;).value;\n         const messageElement = document.getElementById(\&quot;message\&quot;);\n\n         messageElement.textContent = \&quot;Creating account...\&quot;;\n         messageElement.className = \&quot;\&quot;;\n\n         // save credentials using supabase\n         const { data, error } = await supabase.auth.signUp({\n             email: email,\n             password: pass,\n             options: {\n                 data: {\n                     //username: username // NOT NEEDED\n                 }\n             }\n         });\n\n         if (error) {\n             messageElement.textContent = &apos;Error: &apos; + error.message;\n             messageElement.className = \&quot;error\&quot;;\n         } else {\n             // Check if email confirmation is required\n             if (data.session == null &amp;&amp; data.user) {\n                 messageElement.textContent = &apos;Success! Please check your email to confirm account&apos;;\n                 messageElement.className = \&quot;success\&quot;;\n             } else {\n                 messageElement.textContent = &apos;Account created successfully&apos;;\n                 messageElement.className = \&quot;success\&quot;;\n             }\n         }\n     }\n\n\n\n &lt;/script&gt;\n\n     &lt;/body&gt;\n     &lt;/html&gt;\n&quot;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 
+Response content
+Expected: "Greetings from Spring Boot!"
+     but: was " <!DOCTYPE html>\n     <html lang=\"en\">\n     <head>\n         <meta charset=\"UTF-8\">\n         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n         <title>Login Page</title>\n         <script src=\"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2\"></script>\n\n         <style>\n             body {\n                 font-family: Arial, sans-serif;\n                 background-color: #f0f2f5;\n                 display: flex;\n                 justify-content: center;\n                 align-items: center;\n                 height: 100vh;\n                 margin: 0;\n             }\n\n             .login-container {\n                 background-color: white;\n                 padding: 2rem;\n                 border-radius: 8px;\n                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);\n                 width: 300px;\n                 text-align: center;\n             }\n             h2 {\n                 margin-bottom: 1.5rem;\n                 color: #333;\n             }\n             .input-group {\n                 margin-bottom: 1rem;\n                 text-align: left;\n             }\n             label {\n                 display: block;\n                 margin-bottom: 0.5rem;\n                 color: #555;\n             }\n             input[type=\"text\"], input[type=\"password\"] {\n                 width: 100%;\n                 padding: 0.75rem;\n                 border: 1px solid #ddd;\n                 border-radius: 4px;\n                 box-sizing: border-box;\n             }\n             button {\n                 width: 100%;\n                 padding: 0.75rem;\n                 border: none;\n                 border-radius: 4px;\n                 background-color: #007bff;\n                 color: white;\n                 font-size: 1rem;\n                 cursor: pointer;\n                 transition: background-color 0.2s;\n             }\n             button:hover {\n                 background-color: #0056b3;\n             }\n             #message {\n                 margin-top: 1rem;\n                 font-weight: bold;\n             }\n             .success {\n                 color: green;\n             }\n             .error {\n                 color: red;\n             }\n         </style>\n\n     </head>\n     <body>\n\n        <div class=\"login-container\">\n\n             <!-- id for login-wrapper -->\n             <div id=\"login-wrapper\">\n                 <h2>Login</h2>\n                 <form onsubmit=\"handleLogin(); return false;\">\n                     <div class=\"input-group\">\n                         <label for=\"login-username\">Email</label>\n                         <input type=\"text\" id=\"login-username\" required>\n                     </div>\n                     <div class=\"input-group\">\n                         <label for=\"login-password\">Password</label>\n                         <input type=\"password\" id=\"login-password\" required>\n                     </div>\n                     <button type=\"submit\">Log In</button>\n                 </form>\n\n                 <div class=\"toggle-link\" onclick=\"toggleForms()\">\n                     Don't have an account? Sign Up\n                 </div>\n             </div>\n\n             <!--sign up id -->\n             <div id=\"signup-wrapper\" style=\"display: none;\">\n                 <h2>Sign Up</h2>\n                 <form onsubmit=\"handleSignup(); return false;\">\n                     <div class=\"input-group\">\n                         <label for=\"signup-email\">Email</label>\n                         <input type=\"text\" id=\"signup-email\" required>\n                     </div>\n                     <div class=\"input-group\">\n                         <label for=\"signup-password\">Password</label>\n                         <input type=\"password\" id=\"signup-password\" required>\n                     </div>\n\n                     <button type=\"submit\">Create Account</button>\n                 </form>\n\n                 <div class=\"toggle-link\" onclick=\"toggleForms()\">\n                     Back to Login\n                 </div>\n             </div>\n\n             <div id=\"message\"></div>\n\n         </div>\n\n        <script>\n     // supabase url and apikey\n     const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';\n     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';\n\n     try {\n         supabase = window.supabase.createClient(supabaseUrl, supabaseKey);\n     } catch (e) {\n         document.getElementById(\"message\").innerText = \"System Error: Supabase not loaded\";\n     }\n\n     // switch from login to signup\n     function toggleForms() {\n         const loginWrap = document.getElementById('login-wrapper');\n         const signupWrap = document.getElementById('signup-wrapper');\n         const msg = document.getElementById('message');\n\n         if (loginWrap.style.display === 'none') {\n             // login\n             loginWrap.style.display = 'block';\n             signupWrap.style.display = 'none';\n         } else {\n             // signup\n             loginWrap.style.display = 'none';\n             signupWrap.style.display = 'block';\n         }\n         // clear\n         msg.textContent = '';\n         msg.className = '';\n     }\n\n     // login handler\n     async function handleLogin() {\n         const user = document.getElementById(\"login-username\").value;\n         const pass = document.getElementById(\"login-password\").value;\n         const messageElement = document.getElementById(\"message\");\n\n         // not needed (doesnt save)\n         if (user === \"admin\" && pass === \"password123\") {\n             messageElement.textContent = \"Welcome, \" + user;\n             messageElement.className = \"success\";\n             setTimeout(() => window.location.href = \"/dashboard.html\", 1000);\n             return;\n         }\n\n         messageElement.textContent = \"Verifying...\";\n         messageElement.className = \"\";\n\n         // check supabase\n         const { data, error } = await supabase.auth.signInWithPassword({\n             email: user,\n             password: pass\n         });\n\n         if (error) {\n             messageElement.textContent = \"Incorrect username or password\";\n             messageElement.className = \"error\";\n         } else {\n             localStorage.setItem('user_email', user);\n\n             messageElement.textContent = \"Login Successful\";\n             messageElement.className = \"success\";\n             setTimeout(() => window.location.href = \"/dashboard.html\", 1000);\n         }\n     }\n\n     // signup handler\n     async function handleSignup() {\n         const email = document.getElementById(\"signup-email\").value;\n         const pass = document.getElementById(\"signup-password\").value;\n         const messageElement = document.getElementById(\"message\");\n\n         messageElement.textContent = \"Creating account...\";\n         messageElement.className = \"\";\n\n         // save credentials using supabase\n         const { data, error } = await supabase.auth.signUp({\n             email: email,\n             password: pass,\n             options: {\n                 data: {\n                     //username: username // NOT NEEDED\n                 }\n             }\n         });\n\n         if (error) {\n             messageElement.textContent = 'Error: ' + error.message;\n             messageElement.className = \"error\";\n         } else {\n             // Check if email confirmation is required\n             if (data.session == null && data.user) {\n                 messageElement.textContent = 'Success! Please check your email to confirm account';\n                 messageElement.className = \"success\";\n             } else {\n                 messageElement.textContent = 'Account created successfully';\n                 messageElement.className = \"success\";\n             }\n         }\n     }\n\n\n\n </script>\n\n     </body>\n     </html>\n"
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.springframework.test.web.servlet.result.ContentResultMatchers.lambda$string$3(ContentResultMatchers.java:141)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.example.springboot.HelloControllerTest.getHello(HelloControllerTest.java:27)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></failure>
+    <system-out><![CDATA[2025-12-12T18:26:27.346Z  INFO 2035 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.springboot.HelloControllerTest]: HelloControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-12T18:26:27.358Z  INFO 2035 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.springboot.Application for test class com.example.springboot.HelloControllerTest
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.0)
+
+2025-12-12T18:26:27.472Z  INFO 2035 --- [           main] c.e.springboot.HelloControllerTest       : Starting HelloControllerTest using Java 17.0.17 with PID 2035 (started by vscode in /workspaces/Time-Management/project-main/complete)
+2025-12-12T18:26:27.472Z  INFO 2035 --- [           main] c.e.springboot.HelloControllerTest       : No active profile set, falling back to 1 default profile: "default"
+2025-12-12T18:26:28.023Z  INFO 2035 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-12-12T18:26:28.023Z  INFO 2035 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-12-12T18:26:28.027Z  INFO 2035 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-12-12T18:26:28.031Z  INFO 2035 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2025-12-12T18:26:28.054Z  INFO 2035 --- [           main] c.e.springboot.HelloControllerTest       : Started HelloControllerTest in 0.686 seconds (process running for 5.96)
+Let's inspect the beans provided by Spring Boot:
+application
+applicationAvailability
+applicationTaskExecutor
+basicErrorController
+beanNameHandlerMapping
+beanNameViewResolver
+characterEncodingFilter
+classLoaderMetrics
+commandLineRunner
+controllerEndpointDiscoverer
+controllerEndpointHandlerMapping
+controllerExposeExcludePropertyEndpointFilter
+conventionErrorViewResolver
+defaultMeterObservationHandler
+defaultServletHandlerMapping
+defaultViewResolver
+diskSpaceHealthIndicator
+diskSpaceMetrics
+dispatcherServlet
+dispatcherServletRegistration
+eagerTaskExecutorMetrics
+endpointCachingOperationInvokerAdvisor
+endpointMediaTypes
+endpointObjectMapper
+endpointObjectMapperWebMvcConfigurer
+endpointOperationParameterMapper
+error
+errorAttributes
+errorPageCustomizer
+errorPageRegistrarBeanPostProcessor
+fileDescriptorMetrics
+fileWatcher
+flashMapManager
+forceAutoProxyCreatorToUseClassProxying
+formContentFilter
+handlerExceptionResolver
+handlerFunctionAdapter
+healthContributorRegistry
+healthEndpoint
+healthEndpointGroupMembershipValidator
+healthEndpointGroups
+healthEndpointGroupsBeanPostProcessor
+healthEndpointWebExtension
+healthEndpointWebMvcHandlerMapping
+healthHttpCodeStatusMapper
+healthStatusAggregator
+helloController
+httpMessageConvertersRestClientCustomizer
+httpRequestHandlerAdapter
+jacksonObjectMapper
+jacksonObjectMapperBuilder
+jsonComponentModule
+jsonMixinModule
+jsonMixinModuleEntries
+jvmCompilationMetrics
+jvmGcMetrics
+jvmHeapPressureMetrics
+jvmInfoMetrics
+jvmMemoryMetrics
+jvmThreadMetrics
+lifecycleProcessor
+localeCharsetMappingsCustomizer
+localeResolver
+logbackMetrics
+management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties
+management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties
+management.endpoints.web.cors-org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties
+management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties
+management.info-org.springframework.boot.actuate.autoconfigure.info.InfoContributorProperties
+management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties
+management.observations-org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties
+management.server-org.springframework.boot.actuate.autoconfigure.web.server.ManagementServerProperties
+management.simple.metrics.export-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties
+managementServletContext
+mappingJackson2HttpMessageConverter
+messageConverters
+meterRegistryCloser
+meterRegistryPostProcessor
+metricsHttpClientUriTagFilter
+metricsHttpServerUriTagFilter
+metricsObservationHandlerGrouping
+micrometerClock
+mockMvc
+mockMvcBuilder
+multipartConfigElement
+multipartResolver
+mvcContentNegotiationManager
+mvcConversionService
+mvcHandlerMappingIntrospector
+mvcPathMatcher
+mvcPatternParser
+mvcResourceUrlProvider
+mvcUriComponentsContributor
+mvcUrlPathHelper
+mvcValidator
+mvcViewResolver
+observabilitySchedulingConfigurer
+observationRegistry
+observationRegistryPostProcessor
+observationRestClientCustomizer
+observationRestTemplateCustomizer
+org.springframework.aop.config.internalAutoProxyCreator
+org.springframework.boot.actuate.autoconfigure.availability.AvailabilityHealthContributorAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.endpoint.jackson.JacksonEndpointAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.endpoint.web.ServletEndpointManagementContextConfiguration
+org.springframework.boot.actuate.autoconfigure.endpoint.web.ServletEndpointManagementContextConfiguration$WebMvcServletEndpointManagementContextConfiguration
+org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointAutoConfiguration$WebEndpointServletConfiguration
+org.springframework.boot.actuate.autoconfigure.endpoint.web.servlet.WebMvcEndpointManagementContextConfiguration
+org.springframework.boot.actuate.autoconfigure.health.HealthContributorAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.health.HealthEndpointAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.health.HealthEndpointConfiguration
+org.springframework.boot.actuate.autoconfigure.health.HealthEndpointWebExtensionConfiguration
+org.springframework.boot.actuate.autoconfigure.health.HealthEndpointWebExtensionConfiguration$MvcAdditionalHealthEndpointPathsConfiguration
+org.springframework.boot.actuate.autoconfigure.info.InfoContributorAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.CompositeMeterRegistryAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.JvmMetricsAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.LogbackMetricsAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleMetricsExportAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.integration.IntegrationMetricsAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.startup.StartupTimeMetricsListenerAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.task.TaskExecutorMetricsAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.metrics.web.tomcat.TomcatMetricsAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.ObservationAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.ObservationAutoConfiguration$MeterObservationHandlerConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.ObservationAutoConfiguration$MeterObservationHandlerConfiguration$OnlyMetricsMeterObservationHandlerConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.ObservationAutoConfiguration$OnlyMetricsConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.web.client.HttpClientObservationsAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.web.client.HttpClientObservationsAutoConfiguration$MeterFilterConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.web.client.RestClientObservationConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.web.client.RestTemplateObservationConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.web.servlet.WebMvcObservationAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.observation.web.servlet.WebMvcObservationAutoConfiguration$MeterFilterConfiguration
+org.springframework.boot.actuate.autoconfigure.scheduling.ScheduledTasksObservabilityAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthContributorAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration
+org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration$SameManagementContextConfiguration
+org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration$SameManagementContextConfiguration$EnableSameManagementContextConfiguration
+org.springframework.boot.actuate.autoconfigure.web.servlet.ServletManagementContextAutoConfiguration
+org.springframework.boot.autoconfigure.AutoConfigurationPackages
+org.springframework.boot.autoconfigure.aop.AopAutoConfiguration
+org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration
+org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration
+org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
+org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration
+org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration
+org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration$StringHttpMessageConverterConfiguration
+org.springframework.boot.autoconfigure.http.JacksonHttpMessageConvertersConfiguration
+org.springframework.boot.autoconfigure.http.JacksonHttpMessageConvertersConfiguration$MappingJackson2HttpMessageConverterConfiguration
+org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration
+org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory
+org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration
+org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration
+org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonMixinConfiguration
+org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration
+org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration
+org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration
+org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration
+org.springframework.boot.autoconfigure.ssl.SslAutoConfiguration
+org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration
+org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$SimpleAsyncTaskExecutorBuilderConfiguration
+org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$TaskExecutorBuilderConfiguration
+org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$TaskExecutorConfiguration
+org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$ThreadPoolTaskExecutorBuilderConfiguration
+org.springframework.boot.autoconfigure.task.TaskSchedulingAutoConfiguration
+org.springframework.boot.autoconfigure.task.TaskSchedulingConfigurations$SimpleAsyncTaskSchedulerBuilderConfiguration
+org.springframework.boot.autoconfigure.task.TaskSchedulingConfigurations$TaskSchedulerBuilderConfiguration
+org.springframework.boot.autoconfigure.task.TaskSchedulingConfigurations$ThreadPoolTaskSchedulerBuilderConfiguration
+org.springframework.boot.autoconfigure.web.client.RestClientAutoConfiguration
+org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration
+org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration
+org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration$DispatcherServletConfiguration
+org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration
+org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration
+org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration$EmbeddedTomcat
+org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
+org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration
+org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter
+org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration$DefaultErrorViewResolverConfiguration
+org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration
+org.springframework.boot.autoconfigure.websocket.servlet.WebSocketServletAutoConfiguration
+org.springframework.boot.autoconfigure.websocket.servlet.WebSocketServletAutoConfiguration$TomcatWebSocketConfiguration
+org.springframework.boot.context.internalConfigurationPropertiesBinder
+org.springframework.boot.context.properties.BoundConfigurationProperties
+org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor
+org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.methodValidationExcludeFilter
+org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor
+org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration
+org.springframework.boot.test.context.ImportsContextCustomizer$ImportsCleanupPostProcessor
+org.springframework.boot.test.mock.mockito.MockitoPostProcessor
+org.springframework.boot.test.mock.mockito.MockitoPostProcessor$SpyPostProcessor
+org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+org.springframework.context.annotation.internalCommonAnnotationProcessor
+org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+org.springframework.context.event.internalEventListenerFactory
+org.springframework.context.event.internalEventListenerProcessor
+parameterNamesModule
+pathMappedEndpoints
+pingHealthContributor
+preserveErrorControllerTargetClassPostProcessor
+processorMetrics
+propertiesMeterFilter
+propertiesObservationFilter
+propertySourcesPlaceholderConfigurer
+requestContextFilter
+requestMappingHandlerAdapter
+requestMappingHandlerMapping
+resourceHandlerMapping
+restClientBuilder
+restClientBuilderConfigurer
+restClientSsl
+restTemplateBuilder
+restTemplateBuilderConfigurer
+routerFunctionMapping
+server-org.springframework.boot.autoconfigure.web.ServerProperties
+servletEndpointDiscoverer
+servletEndpointRegistrar
+servletExposeExcludePropertyEndpointFilter
+servletWebChildContextFactory
+servletWebServerFactoryCustomizer
+simpleAsyncTaskExecutorBuilder
+simpleAsyncTaskSchedulerBuilder
+simpleConfig
+simpleControllerHandlerAdapter
+simpleMeterRegistry
+spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties
+spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties
+spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties
+spring.mvc-org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties
+spring.servlet.multipart-org.springframework.boot.autoconfigure.web.servlet.MultipartProperties
+spring.sql.init-org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties
+spring.ssl-org.springframework.boot.autoconfigure.ssl.SslProperties
+spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties
+spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties
+spring.web-org.springframework.boot.autoconfigure.web.WebProperties
+springBootMockMvcBuilderCustomizer
+sslBundleRegistry
+sslPropertiesSslBundleRegistrar
+standardJacksonObjectMapperBuilderCustomizer
+startupTimeMetrics
+stringHttpMessageConverter
+taskExecutorBuilder
+taskSchedulerBuilder
+themeResolver
+threadPoolTaskExecutorBuilder
+threadPoolTaskSchedulerBuilder
+tomcatMetricsBinder
+tomcatServletWebServerFactory
+tomcatServletWebServerFactoryCustomizer
+uptimeMetrics
+viewControllerHandlerMapping
+viewNameTranslator
+viewResolver
+webEndpointDiscoverer
+webEndpointPathMapper
+webEndpointServletHandlerMapping
+webExposeExcludePropertyEndpointFilter
+webMvcObservationFilter
+webServerFactoryCustomizerBeanPostProcessor
+websocketServletWebServerCustomizer
+welcomePageHandlerMapping
+welcomePageNotAcceptableHandlerMapping
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /
+       Parameters = {}
+          Headers = [Accept:"application/json"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = com.example.springboot.HelloController
+           Method = com.example.springboot.HelloController#index()
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json", Content-Length:"7931"]
+     Content type = application/json
+             Body =  <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Login Page</title>
+         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+         <style>
+             body {
+                 font-family: Arial, sans-serif;
+                 background-color: #f0f2f5;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 height: 100vh;
+                 margin: 0;
+             }
+
+             .login-container {
+                 background-color: white;
+                 padding: 2rem;
+                 border-radius: 8px;
+                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                 width: 300px;
+                 text-align: center;
+             }
+             h2 {
+                 margin-bottom: 1.5rem;
+                 color: #333;
+             }
+             .input-group {
+                 margin-bottom: 1rem;
+                 text-align: left;
+             }
+             label {
+                 display: block;
+                 margin-bottom: 0.5rem;
+                 color: #555;
+             }
+             input[type="text"], input[type="password"] {
+                 width: 100%;
+                 padding: 0.75rem;
+                 border: 1px solid #ddd;
+                 border-radius: 4px;
+                 box-sizing: border-box;
+             }
+             button {
+                 width: 100%;
+                 padding: 0.75rem;
+                 border: none;
+                 border-radius: 4px;
+                 background-color: #007bff;
+                 color: white;
+                 font-size: 1rem;
+                 cursor: pointer;
+                 transition: background-color 0.2s;
+             }
+             button:hover {
+                 background-color: #0056b3;
+             }
+             #message {
+                 margin-top: 1rem;
+                 font-weight: bold;
+             }
+             .success {
+                 color: green;
+             }
+             .error {
+                 color: red;
+             }
+         </style>
+
+     </head>
+     <body>
+
+        <div class="login-container">
+
+             <!-- id for login-wrapper -->
+             <div id="login-wrapper">
+                 <h2>Login</h2>
+                 <form onsubmit="handleLogin(); return false;">
+                     <div class="input-group">
+                         <label for="login-username">Email</label>
+                         <input type="text" id="login-username" required>
+                     </div>
+                     <div class="input-group">
+                         <label for="login-password">Password</label>
+                         <input type="password" id="login-password" required>
+                     </div>
+                     <button type="submit">Log In</button>
+                 </form>
+
+                 <div class="toggle-link" onclick="toggleForms()">
+                     Don't have an account? Sign Up
+                 </div>
+             </div>
+
+             <!--sign up id -->
+             <div id="signup-wrapper" style="display: none;">
+                 <h2>Sign Up</h2>
+                 <form onsubmit="handleSignup(); return false;">
+                     <div class="input-group">
+                         <label for="signup-email">Email</label>
+                         <input type="text" id="signup-email" required>
+                     </div>
+                     <div class="input-group">
+                         <label for="signup-password">Password</label>
+                         <input type="password" id="signup-password" required>
+                     </div>
+
+                     <button type="submit">Create Account</button>
+                 </form>
+
+                 <div class="toggle-link" onclick="toggleForms()">
+                     Back to Login
+                 </div>
+             </div>
+
+             <div id="message"></div>
+
+         </div>
+
+        <script>
+     // supabase url and apikey
+     const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';
+     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
+
+     try {
+         supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+     } catch (e) {
+         document.getElementById("message").innerText = "System Error: Supabase not loaded";
+     }
+
+     // switch from login to signup
+     function toggleForms() {
+         const loginWrap = document.getElementById('login-wrapper');
+         const signupWrap = document.getElementById('signup-wrapper');
+         const msg = document.getElementById('message');
+
+         if (loginWrap.style.display === 'none') {
+             // login
+             loginWrap.style.display = 'block';
+             signupWrap.style.display = 'none';
+         } else {
+             // signup
+             loginWrap.style.display = 'none';
+             signupWrap.style.display = 'block';
+         }
+         // clear
+         msg.textContent = '';
+         msg.className = '';
+     }
+
+     // login handler
+     async function handleLogin() {
+         const user = document.getElementById("login-username").value;
+         const pass = document.getElementById("login-password").value;
+         const messageElement = document.getElementById("message");
+
+         // not needed (doesnt save)
+         if (user === "admin" && pass === "password123") {
+             messageElement.textContent = "Welcome, " + user;
+             messageElement.className = "success";
+             setTimeout(() => window.location.href = "/dashboard.html", 1000);
+             return;
+         }
+
+         messageElement.textContent = "Verifying...";
+         messageElement.className = "";
+
+         // check supabase
+         const { data, error } = await supabase.auth.signInWithPassword({
+             email: user,
+             password: pass
+         });
+
+         if (error) {
+             messageElement.textContent = "Incorrect username or password";
+             messageElement.className = "error";
+         } else {
+             localStorage.setItem('user_email', user);
+
+             messageElement.textContent = "Login Successful";
+             messageElement.className = "success";
+             setTimeout(() => window.location.href = "/dashboard.html", 1000);
+         }
+     }
+
+     // signup handler
+     async function handleSignup() {
+         const email = document.getElementById("signup-email").value;
+         const pass = document.getElementById("signup-password").value;
+         const messageElement = document.getElementById("message");
+
+         messageElement.textContent = "Creating account...";
+         messageElement.className = "";
+
+         // save credentials using supabase
+         const { data, error } = await supabase.auth.signUp({
+             email: email,
+             password: pass,
+             options: {
+                 data: {
+                     //username: username // NOT NEEDED
+                 }
+             }
+         });
+
+         if (error) {
+             messageElement.textContent = 'Error: ' + error.message;
+             messageElement.className = "error";
+         } else {
+             // Check if email confirmation is required
+             if (data.session == null && data.user) {
+                 messageElement.textContent = 'Success! Please check your email to confirm account';
+                 messageElement.className = "success";
+             } else {
+                 messageElement.textContent = 'Account created successfully';
+                 messageElement.className = "success";
+             }
+         }
+     }
+
+
+
+ </script>
+
+     </body>
+     </html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+</testsuite>
