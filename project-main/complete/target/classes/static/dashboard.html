@@ -143,19 +143,20 @@
 
         </div>
 
-        <div class="AI-container">
-
-            <div class="AI-header">
-                <!-- javascript M/Y -->
-                <h2 id="month-year"></h2>
+        <div class="AI-container" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee;">
+            <h3>AI Assistant</h3>
+            <div style="display: flex; gap: 10px; flex-direction: column; align-items: center;">
+                <textarea id="ai-prompt" placeholder="Ask the AI to help with your schedule..." 
+                    style="width: 100%; max-width: 600px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; height: 60px;"></textarea>
+                
+                <button id="ask-ai-btn" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                    Generate Ideas
+                </button>
             </div>
 
-            <div class="AI-grid" id="AI-days">
-                <!-- javascript Day/Number -->
+            <div id="ai-response" style="margin-top: 1rem; font-style: italic; color: #555; min-height: 20px;">
             </div>
-
-            <div id="selected-date-msg">AI TEST</div>
-
+            
         </div>
 
     </div>
@@ -163,7 +164,7 @@
     <script>
         const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
         
         const currentUserEmail = localStorage.getItem('user_email');
 
@@ -214,7 +215,7 @@
 
             msgEl.textContent = `Loading calendar for: ${currentUserEmail}...`;
             
-            const { data: savedEvents, error } = await supabase
+            const { data: savedEvents, error } = await supabaseClient
                 .from('calendar_events')
                 .select('*')
                 .eq('user_email', currentUserEmail); // important
@@ -252,7 +253,7 @@
                 textArea.addEventListener('change', async function() {
                     msgEl.textContent = "Saving...";
                     
-                    const { error } = await supabase
+                    const { error } = await supabaseClient
                         .from('calendar_events')
                         .upsert({ 
                             user_email: currentUserEmail,
