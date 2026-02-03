@@ -163,6 +163,7 @@
     </div>
 
     <script>
+
         const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -293,7 +294,26 @@
                 // add cell
                 calendarDays.appendChild(dayCell);
             }
+
         });
+    </script>
+
+    <script type="module">
+       import { GoogleGenAI } from "@google/genai";
+
+        // The client gets the API key from the environment variable `GEMINI_API_KEY`.
+        const ai = new GoogleGenAI({AIzaSyBQQgHL0bDl3a23pvhmuHwqme_GrA7L22w});
+
+        async function main() {
+        const response = await ai.models.generateContent({
+            model: "gemini-3-flash-preview",
+            contents: "Explain how AI works in a few words",
+        });
+        console.log(response.text);
+        }
+
+        main();
+
     </script>
 
 </body>
