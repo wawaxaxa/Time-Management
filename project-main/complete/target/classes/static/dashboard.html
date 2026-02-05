@@ -299,21 +299,84 @@
     </script>
 
     <script type="module">
-       import { GoogleGenAI } from "@google/genai";
+        // Using a specific versioned URL to ensure stability
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai@0.1.0";
 
-        // The client gets the API key from the environment variable `GEMINI_API_KEY`.
-        const ai = new GoogleGenAI({AIzaSyBQQgHL0bDl3a23pvhmuHwqme_GrA7L22w});
+        // Grab elements
+        const aiBtn = document.getElementById('ask-ai-btn');
+        const aiInput = document.getElementById('ai-prompt');
+        const aiResponse = document.getElementById('ai-response');
 
-        async function main() {
-        const response = await ai.models.generateContent({
-            model: "gemini-3-flash-preview",
-            contents: "Explain how AI works in a few words",
-        });
-        console.log(response.text);
+        // Your Key
+        const API_KEY = "AIzaSyCVlGsoQViCJnG4PF3pCZKh7z1ahTibw5U"; 
+        const genAI = new GoogleGenerativeAI(API_KEY);
+
+        async function listAvailableModels() {
+            aiResponse.textContent = "Checking Google's servers...";
+        
+            // We call the API directly via URL
+            const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.error) {
+                    aiResponse.textContent = "API Error: " + data.error.message;
+                    return;
+                }
+
+                // Filter for models you can actually use for chat
+                const available = data.models
+                    .filter(m => m.supportedGenerationMethods.includes("generateContent"))
+                    .map(m => m.name.replace("models/", "")) // Clean up the name
+                    .join("\n• ");
+
+                aiResponse.style.whiteSpace = "pre-wrap";
+                aiResponse.textContent = "✅ Models Found:\n• " + available;
+
+            } catch (err) {
+                aiResponse.textContent = "Connection Error: " + err.message;
+            }
+        }
+        
+
+        async function startAI() {
+            const userText = aiInput.value.trim();
+            
+            if (!userText) {
+                aiResponse.textContent = "Please type something first!";
+                return;
+            }
+
+            console.log()
+            console.log("AI Started with prompt:", userText);
+            aiResponse.textContent = "Generating response...";
+
+            try {
+                // Use 'gemini-1.5-flash' - it's the most compatible for web calls
+                const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+                const result = await model.generateContent(userText);
+                const response = await result.response;
+                const text = response.text();
+
+                console.log("AI Success:", text);
+                aiResponse.textContent = text;
+
+            } catch (err) {
+                console.error("Detailed AI Error:", err);
+                aiResponse.textContent = "Error: " + err.message;
+            }
         }
 
-        main();
-
+        // Attach the event
+        if (aiBtn) {
+            aiBtn.onclick = startAI;
+            console.log("AI Button Linked");
+        } else {
+            console.log("Could not find the button!");
+        }
     </script>
 
 </body>
