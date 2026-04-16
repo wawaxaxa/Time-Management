@@ -135,8 +135,8 @@ public class HelloController {
 
                        <script>
                     // supabase url and apikey
-                    const supabaseUrl = 'https://obqqtvzkiwaeyasskayd.supabase.co';
-                    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9icXF0dnpraXdhZXlhc3NrYXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTE4MjQsImV4cCI6MjA4MDI2NzgyNH0.3Wjwvpn6gZSjYdC0-ixtMk-uu7pa5vBMlqp0r6oL40g';
+                    const supabaseUrl = 'https://cwklklsfelkdughcsvjc.supabase.co';
+                    const supabaseKey = 'sb_publishable_OREojXS750lxe4WxTPp0aw_mihcLs3m';
 
                     try {
                         supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
