@@ -27,7 +27,7 @@ public class HelloController {
         }
     }
 
-    java@GetMapping("/notify-login")
+    @GetMapping("/notify-login")
     public String notifyLogin() {
         try {
             String os = System.getProperty("os.name").toLowerCase();
