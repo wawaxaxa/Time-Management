@@ -6,6 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+    @Autowired
+    private NotificationService notificationService;
+
+    @GetMapping("/notify-login")
+    public String notifyLogin() {
+        notificationService.sendNotification("Time Management", "Login Successful!");
+        return "ok";
+    }
+    
 	@GetMapping("/")
 	public String index() {
 		return 
@@ -174,6 +183,9 @@ public class HelloController {
                         if (user === "admin" && pass === "password123") {
                             messageElement.textContent = "Welcome, " + user;
                             messageElement.className = "success";
+
+                            await fetch("/notify-login");  // <-- add this line
+                            
                             setTimeout(() => window.location.href = "/dashboard.html", 1000);
                             return;
                         }
