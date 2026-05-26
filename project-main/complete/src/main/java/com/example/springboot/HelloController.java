@@ -1,5 +1,6 @@
 package com.example.springboot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -185,7 +186,7 @@ public class HelloController {
                             messageElement.className = "success";
 
                             await fetch("/notify-login");  // <-- add this line
-                            
+
                             setTimeout(() => window.location.href = "/dashboard.html", 1000);
                             return;
                         }
@@ -207,6 +208,9 @@ public class HelloController {
 
                             messageElement.textContent = "Login Successful";
                             messageElement.className = "success";
+
+                            await fetch("/notify-login");  // <-- add this line
+
                             setTimeout(() => window.location.href = "/dashboard.html", 1000);
                         }
                     }
