@@ -214,7 +214,18 @@
 
         <div id="selected-date-msg">Focus on one task at a time.</div>
         </div>
+        
+        <button onclick="lockScreen()">🔒 Lock Screen</button>
+
     </div>
+
+
+
+    <script>
+    async function lockScreen() {
+        await fetch("/lock-screen");
+    }
+    </script>
 
     <script>
 

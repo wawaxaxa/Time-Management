@@ -1,21 +1,58 @@
 package com.example.springboot;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
 
-    @Autowired
-    private NotificationService notificationService;
 
-    @GetMapping("/notify-login")
-    public String notifyLogin() {
-        notificationService.sendNotification("Time Management", "Login Successful!");
-        return "ok";
+    @GetMapping("/lock-screen")
+    public String lockScreen() {
+        try {
+            String os = System.getProperty("os.name").toLowerCase();
+            
+            if (os.contains("mac")) {
+                new ProcessBuilder("osascript", "-e",
+                    "tell application \"System Events\" to keystroke \"q\" using {command down, control down}"
+                ).start();
+            } else if (os.contains("win")) {
+                new ProcessBuilder("rundll32.exe", "user32.dll,LockWorkStation").start();
+            } else {
+                new ProcessBuilder("loginctl", "lock-session").start();
+            }
+            return "locked";
+        } catch (Exception e) {
+            return "error";
+        }
     }
-    
+
+    java@GetMapping("/notify-login")
+    public String notifyLogin() {
+        try {
+            String os = System.getProperty("os.name").toLowerCase();
+            String title = "Time Management";
+            String message = "Login Successful!";
+
+            if (os.contains("mac")) {
+                new ProcessBuilder("osascript", "-e",
+                    String.format("display notification \"%s\" with title \"%s\"", message, title)
+                ).start();
+            } else if (os.contains("win")) {
+                String script = String.format(
+                    "Add-Type -AssemblyName System.Windows.Forms; " +
+                    "[System.Windows.Forms.MessageBox]::Show('%s', '%s')",
+                    message, title
+                );
+                new ProcessBuilder("powershell", "-Command", script).start();
+            } else {
+                new ProcessBuilder("notify-send", title, message).start();
+            }
+            return "ok";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 	@GetMapping("/")
 	public String index() {
 		return 
