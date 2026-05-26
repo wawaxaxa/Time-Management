@@ -12,16 +12,15 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            display: block;
+            height: auto;
             margin: 0;
             padding: 20px;
             box-sizing: border-box; 
         }
 
         .container {
+            margin: 1rem auto;
             background-color: white;
             padding: 2rem;
             border-radius: 8px;
@@ -163,7 +162,7 @@
     </div>
 
     <div class="container" style="margin-top: 2rem; padding-top: 1rem;">
-    <div class="calendar-container">
+        <div class="calendar-container">
         <div class="calendar-header">
             <h2>Daily Productivity Mapper</h2>
         </div>
@@ -190,8 +189,8 @@
                 <textarea class="event-input" placeholder="Meeting / Collaboration..."></textarea>
             </div>
 
-            <div class="calendar-day" style="background-color: #f8f9fa;">
-                <div class="calendar-day-number" style="padding: 5px 8px; color: #6c757d;">12:00 PM</div>
+            <div class="calendar-day" style="background-color: #ffffff;">
+                <div class="calendar-day-number" style="padding: 5px 8px; color: #007bff;">12:00 PM</div>
                 <textarea class="event-input" placeholder="Lunch Break & Recharge..."></textarea>
             </div>
 
@@ -212,19 +211,47 @@
 
         </div>
 
-        <div id="selected-date-msg">Focus on one task at a time.</div>
-        </div>
+     <!--   <div id="selected-date-msg">Focus on one task at a time.</div>
+        </div> -->
         
-        <button onclick="lockScreen()">🔒 Lock Screen</button>
-
     </div>
+    
+    
+    <div style="text-align:center; margin-top: 1rem;">
+        <button onclick="notifyTodayEvents()" >What's on my calendar today?</button>
 
-
+        <button onclick="lockScreen()">Lock Screen</button>
+    </div>
 
     <script>
     async function lockScreen() {
         await fetch("/lock-screen");
     }
+
+    async function notifyTodayEvents() {
+        const today = new Date();
+        const todayNum = today.getDate().toString();
+
+        const events = [];
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            const dayNum = day.querySelector('.calendar-day-number')?.textContent?.trim();
+            const note = day.querySelector('.event-input')?.value?.trim();
+            if (dayNum === todayNum && note) {
+                events.push(note);
+            }
+        });
+
+        const msg = events.length > 0
+            ? "Today's events:\n" + events.join("\n")
+            : "Type Something Into The Box";
+
+        // Show in browser
+        //document.getElementById('ai-response').textContent = "❋ " + msg + " ❋";
+
+        // Trigger desktop notification via Spring Boot
+        await fetch("/notify-login"); // reuses your existing endpoint
+    }
+
     </script>
 
     <script>
