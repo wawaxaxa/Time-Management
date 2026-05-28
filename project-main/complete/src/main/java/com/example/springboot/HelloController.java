@@ -3,10 +3,21 @@ package com.example.springboot;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 public class HelloController {
 
+    @GetMapping("/dashboard")
+    public ResponseEntity<String> dashboard() {
+        try {
+            String html = new String(getClass().getResourceAsStream("/static/dashboard.html").readAllBytes());
+            return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(html);
+        } catch (Exception e) {
+            return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body("<h1>Error loading dashboard</h1>");
+        }
+    }
 
     @GetMapping("/lock-screen")
     public String lockScreen() {
@@ -43,7 +54,8 @@ public class HelloController {
                 String script = String.format(
                     "Add-Type -AssemblyName System.Windows.Forms; " +
                     "[System.Windows.Forms.MessageBox]::Show('%s', '%s')",
-                    message, title
+                    message.replace("'", "\"").replace("\n", " | "),
+                    title.replace("'", "\"")
                 );
                 new ProcessBuilder("powershell", "-Command", script).start();
             } else {
@@ -226,7 +238,8 @@ public class HelloController {
 
                             await fetch(`/notify-login?message=Login+Successful&title=Time+Management`);
 
-                            setTimeout(() => window.location.href = "/dashboard.html", 1000);
+                            setTimeout(() => window.location.href = "/dashboard", 1000);
+                            //setTimeout(() => window.location.href = "/dashboard.html", 1000);
                             return;
                         }
 
@@ -250,7 +263,8 @@ public class HelloController {
                             
                             await fetch(`/notify-login?message=Login+Successful&title=Time+Management`);
 
-                            setTimeout(() => window.location.href = "/dashboard.html", 1000);
+                            setTimeout(() => window.location.href = "/dashboard", 1000);
+                            //setTimeout(() => window.location.href = "/dashboard.html", 1000);
                         }
                     }
 

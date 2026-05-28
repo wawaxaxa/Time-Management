@@ -228,40 +228,24 @@
         await fetch("/lock-screen");
     }
 
-    async function notifyTodayEvents() {
-        const today = new Date();
-        const todayNum = today.getDate().toString();
-
+   async function notifyTodayEvents() {
         const events = [];
+
         document.querySelectorAll('.calendar-day').forEach(day => {
-            const dayNum = day.querySelector('.calendar-day-number')?.textContent?.trim();
+            const label = day.querySelector('.calendar-day-number')?.textContent?.trim();
             const note = day.querySelector('.event-input')?.value?.trim();
-            if (dayNum === todayNum && note) {
-                events.push(note);
+            
+            // only grab time slots (productivity mapper) that have content
+            if (label && label.includes(':') && note) {
+                events.push(`${label}: ${note}`);
             }
         });
 
         const msg = events.length > 0
-            ? "Today's events:\n" + events.join("\n")
-            : "Type Something Into The Box";
+            ? "Today's schedule:\n" + events.join("\n")
+            : "Nothing planned today. Type something into the productivity mapper!";
 
-        // Show in browser
-        //document.getElementById('ai-response').textContent = "❋ " + msg + " ❋";
-
-        // Trigger desktop notification via Spring Boot
-        //await fetch("/notify-login"); // reuses your existing endpoint
         await fetch(`/notify-login?message=${encodeURIComponent(msg)}&title=Time+Management`);
-
-        /*In the URL /notify-login?message=Login Successful!&title=Time Management:
-        ? — marks the start of the query parameters. Everything after it is data, not part of the path.
-        & — separates multiple parameters. Think of it as "and".
-        = — links a key to its value.
-        So broken down:
-        /notify-login          ← the endpoint
-        ?                      ← "here come the parameters"
-        message=Login Successful!   ← first param
-        &                      ← "and also..."
-        title=Time Management  ← second param*/
     }
 
     </script>
@@ -446,47 +430,47 @@
         
 
         async function startAI() {
-    const userText = aiInput.value.trim();
-    
-    if (!userText) {
-        aiResponse.textContent = "Please type something first!";
-        return;
-    }
+            const userText = aiInput.value.trim();
+            
+            if (!userText) {
+                aiResponse.textContent = "Please type something first!";
+                return;
+            }
 
-    aiResponse.textContent = "Generating response...";
+            aiResponse.textContent = "Generating response...";
 
-    // 1. GATHER DATA BEFORE CALLING AI
-    const currentData = [];
-    document.querySelectorAll('.calendar-day').forEach(day => {
-        const dayNum = day.querySelector('.calendar-day-number')?.textContent;
-        const note = day.querySelector('.event-input')?.value;
-        if (dayNum && note && note.trim() !== "") {
-            currentData.push({ day: dayNum, note: note });
+            //GATHER DATA BEFORE CALLING AI
+            const currentData = [];
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                const dayNum = day.querySelector('.calendar-day-number')?.textContent;
+                const note = day.querySelector('.event-input')?.value;
+                if (dayNum && note && note.trim() !== "") {
+                    currentData.push({ day: dayNum, note: note });
+                }
+            });
+
+            // 2. CREATE THE PROMPT
+            const contextPrompt = `
+                Context: ${document.getElementById('month-year').textContent}.
+                Current Events: ${JSON.stringify(currentData)}.
+                User Request: "${userText}"
+            `;
+
+            try {
+                const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+                // 3. SEND THE CONTEXT, NOT JUST THE USER INPUT
+                const result = await model.generateContent(contextPrompt); 
+                const response = await result.response;
+                const text = response.text();
+
+                aiResponse.style.whiteSpace = "pre-wrap";
+                aiResponse.textContent = text;
+
+            } catch (err) {
+                aiResponse.textContent = "Error: " + err.message;
+            }
         }
-    });
-
-    // 2. CREATE THE PROMPT
-    const contextPrompt = `
-        Context: ${document.getElementById('month-year').textContent}.
-        Current Events: ${JSON.stringify(currentData)}.
-        User Request: "${userText}"
-    `;
-
-    try {
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
-        // 3. SEND THE CONTEXT, NOT JUST THE USER INPUT
-        const result = await model.generateContent(contextPrompt); 
-        const response = await result.response;
-        const text = response.text();
-
-        aiResponse.style.whiteSpace = "pre-wrap";
-        aiResponse.textContent = text;
-
-    } catch (err) {
-        aiResponse.textContent = "Error: " + err.message;
-    }
-}
         // Attach the event
         if (aiBtn) {
             aiBtn.onclick = startAI;
