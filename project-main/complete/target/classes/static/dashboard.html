@@ -249,7 +249,19 @@
         //document.getElementById('ai-response').textContent = "❋ " + msg + " ❋";
 
         // Trigger desktop notification via Spring Boot
-        await fetch("/notify-login"); // reuses your existing endpoint
+        //await fetch("/notify-login"); // reuses your existing endpoint
+        await fetch(`/notify-login?message=${encodeURIComponent(msg)}&title=Time+Management`);
+
+        /*In the URL /notify-login?message=Login Successful!&title=Time Management:
+        ? — marks the start of the query parameters. Everything after it is data, not part of the path.
+        & — separates multiple parameters. Think of it as "and".
+        = — links a key to its value.
+        So broken down:
+        /notify-login          ← the endpoint
+        ?                      ← "here come the parameters"
+        message=Login Successful!   ← first param
+        &                      ← "and also..."
+        title=Time Management  ← second param*/
     }
 
     </script>

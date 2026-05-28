@@ -2,6 +2,7 @@ package com.example.springboot;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class HelloController {
@@ -28,11 +29,11 @@ public class HelloController {
     }
 
     @GetMapping("/notify-login")
-    public String notifyLogin() {
+    public String notifyLogin(@RequestParam String message, @RequestParam String title) {
         try {
             String os = System.getProperty("os.name").toLowerCase();
-            String title = "Time Management";
-            String message = "Login Successful!";
+            //title = "Time Management";
+            //message = "Login Successful!";
 
             if (os.contains("mac")) {
                 new ProcessBuilder("osascript", "-e",
@@ -53,6 +54,7 @@ public class HelloController {
             return "error";
         }
     }
+
 	@GetMapping("/")
 	public String index() {
 		return 
@@ -222,7 +224,7 @@ public class HelloController {
                             messageElement.textContent = "Welcome, " + user;
                             messageElement.className = "success";
 
-                            await fetch("/notify-login");  // <-- add this line
+                            await fetch(`/notify-login?message=Login+Successful&title=Time+Management`);
 
                             setTimeout(() => window.location.href = "/dashboard.html", 1000);
                             return;
@@ -245,8 +247,8 @@ public class HelloController {
 
                             messageElement.textContent = "Login Successful";
                             messageElement.className = "success";
-
-                            await fetch("/notify-login");  // <-- add this line
+                            
+                            await fetch(`/notify-login?message=Login+Successful&title=Time+Management`);
 
                             setTimeout(() => window.location.href = "/dashboard.html", 1000);
                         }
