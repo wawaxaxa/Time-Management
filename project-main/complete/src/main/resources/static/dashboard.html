@@ -449,7 +449,7 @@
                 }
             });
 
-            // 2. CREATE THE PROMPT
+            //CREATE THE PROMPT
             const contextPrompt = `
                 Context: ${document.getElementById('month-year').textContent}.
                 Current Events: ${JSON.stringify(currentData)}.
@@ -471,7 +471,7 @@
                 aiResponse.textContent = "Error: " + err.message;
             }
         }
-        // Attach the event
+        //event
         if (aiBtn) {
             aiBtn.onclick = startAI;
             console.log("AI Button Linked");
